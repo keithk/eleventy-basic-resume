@@ -1,0 +1,99 @@
+<script webc:setup>
+  const basics = resume.basics;
+</script>
+
+<header class="resume-header">
+  <h1 class="resume-title">
+    <span class="name" @text="basics.name"></span>
+    <br />
+    <span class="role" @text="basics.label"></span>
+  </h1>
+  <address webc:is="address"></address>
+</header>
+
+<style webc:scoped>
+  .resume-header {
+    display: flex;
+    padding-block: 3rem 2rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-block-end: var(--section-spacing);
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 25%;
+      height: 1px;
+      background: var(--accent-color);
+    }
+
+    @container resume (max-width: 40rem) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+      padding-block: 2rem 1.5rem;
+
+      &::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50%;
+      }
+    }
+  }
+
+  .resume-title {
+    flex: 1 0 auto;
+    line-height: 1.1;
+
+    & .name {
+      display: block;
+      font-size: clamp(2rem, 8cqi, 3rem);
+      font-weight: 700;
+      margin-block-end: 0.75rem;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    & .role {
+      display: block;
+      font-size: clamp(1.1rem, 4cqi, 1.25rem);
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 0.01em;
+    }
+
+    @container resume (max-width: 40rem) {
+      & .name {
+        margin-block-end: 0.5rem;
+      }
+    }
+  }
+
+  @media print {
+    .resume-header {
+      padding-block: 1.5rem 1rem;
+      margin-block-end: 1.5rem;
+      border-bottom: 1pt solid var(--border-color);
+
+      &::after {
+        background: var(--text-secondary);
+      }
+    }
+
+    .resume-title {
+      & .name {
+        font-size: 2rem;
+      }
+
+      & .role {
+        font-size: 1.1rem;
+      }
+    }
+  }
+</style>

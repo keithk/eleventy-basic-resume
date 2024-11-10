@@ -1,0 +1,136 @@
+<script webc:setup>
+  const work = resume.work;
+</script>
+
+<h2>Experience</h2>
+<div class="resume-experience__content">
+  <div class="resume-experience__job" webc:for="job of work">
+    <header class="resume-experience__header">
+      <div class="resume-experience__role">
+        <h3 class="resume-experience__position" @text="job.position"></h3>
+        <span class="resume-experience__company" @text="job.name"></span>
+      </div>
+      <span
+        class="resume-experience__date"
+        @text="job.period ? job.period : `${job.startDate} – ${job.endDate}`"
+      ></span>
+    </header>
+    <p class="resume-experience__summary" @text="job.summary"></p>
+    <ul class="resume-experience__highlights">
+      <li
+        class="resume-experience__highlight"
+        webc:for="highlight of job.highlights"
+        @text="highlight"
+      ></li>
+    </ul>
+  </div>
+</div>
+
+<style webc:scoped>
+  .resume-experience__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .resume-experience__job {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border-color);
+
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+  }
+
+  .resume-experience__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+
+    @container section (max-width: 30rem) {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  .resume-experience__role {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .resume-experience__position {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .resume-experience__company {
+    font-size: 1rem;
+    color: var(--text-secondary);
+  }
+
+  .resume-experience__date {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .resume-experience__summary {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin: 0;
+    padding: 1rem 1.25rem;
+    background-color: lch(97 0 0);
+    border-left: 3px solid var(--accent-color);
+    font-style: italic;
+  }
+
+  .resume-experience__highlights {
+    list-style-type: disc;
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    & li {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--text-primary);
+      padding-left: 0.5rem;
+
+      &::marker {
+        color: var(--accent-color);
+      }
+    }
+  }
+
+  @media print {
+    .resume-experience__job {
+      break-inside: avoid;
+      padding-bottom: 2rem;
+    }
+
+    .resume-experience__highlights {
+      break-inside: avoid;
+    }
+
+    .resume-experience__summary {
+      background-color: transparent;
+      border-left: 2px solid var(--border-color);
+    }
+
+    .resume-experience__position {
+      font-size: 1.1rem;
+    }
+  }
+</style>

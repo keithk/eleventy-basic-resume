@@ -1,0 +1,61 @@
+<script webc:setup>
+  const skills = resume.skills;
+</script>
+
+<h2>Skills</h2>
+<ul class="resume-skills__list">
+  <li class="resume-skills__item" webc:for="skill of skills" @text="skill"></li>
+</ul>
+
+<style webc:scoped>
+  .resume-skills__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .resume-skills__item {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    background: var(--surface-color);
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--border-color);
+    text-align: center;
+  }
+
+  /* Hover effects only on devices that support hover */
+  @media (hover: hover) {
+    .resume-skills__item:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent-color);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+  }
+
+  /* Remove transitions for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .resume-skills__item {
+      transition: none;
+    }
+  }
+
+  /* Print-specific styles */
+  @media print {
+    .resume-skills__list {
+      gap: 0.75rem;
+      break-inside: avoid;
+    }
+
+    .resume-skills__item {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      break-inside: avoid;
+      /* Slightly reduce padding for print */
+      padding: 0.5rem 0.75rem;
+    }
+  }
+</style>

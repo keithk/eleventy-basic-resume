@@ -1,0 +1,97 @@
+{
+  "basics": {
+    "name": "Ash Ketchum",
+    "label": "Professional Pokemon Trainer & League Champion",
+    "email": "ash.ketchum@pallettown.net",
+    "url": "trainer.ash",
+    "location": {
+      "city": "Pallet Town",
+      "region": "Kanto",
+      "countryCode": "PKM"
+    },
+    "summary": "Dedicated Pokemon Trainer with 20+ years of experience in catching, training, and battling Pokemon across multiple regions. Proven track record of turning underdogs into champions. Known for exceptional bond-building abilities with Pokemon and pioneering the 'friendship-first' training methodology.",
+    "profiles": [
+      {
+        "network": "in/ash-ketchum",
+        "url": "https://www.linkedin.com/in/ash-ketchum"
+      }
+    ]
+  },
+  "skills": [
+    "Pokemon Battle Strategy",
+    "Team Building",
+    "Crisis Management",
+    "Leadership",
+    "Pokemon First Aid",
+    "Cross-Species Communication",
+    "Gym Badge Acquisition",
+    "Tournament Strategy",
+    "Pokeball Throwing",
+    "Type Matchup Analysis"
+  ],
+  "tools": [
+    "Pokedex",
+    "Pokeballs",
+    "Pokemon Center Network",
+    "Battle Scanner",
+    "Rotom Phone"
+  ],
+  "work": [
+    {
+      "name": "Pokemon World Championships",
+      "position": "World Champion & Battle Frontier Mentor",
+      "startDate": "2022",
+      "endDate": "Present",
+      "summary": "Achieved lifelong dream of becoming World Champion while mentoring next generation of trainers.",
+      "highlights": [
+        "Defeated Leon to claim first World Champion title, revolutionizing battle strategies with unconventional tactics",
+        "Established training program for aspiring champions, focusing on Pokemon-trainer relationship building",
+        "Pioneered new battle techniques combining type advantages with environmental factors",
+        "Represented the Pokemon League in international diplomatic missions",
+        "Maintained 92% win rate in official matches while using non-fully-evolved Pokemon"
+      ]
+    },
+    {
+      "name": "Alola Pokemon School",
+      "position": "Research Fellow & Lead Instructor",
+      "startDate": "2016",
+      "endDate": "2022",
+      "summary": "Served as both student and teacher while researching regional Pokemon variations and Z-Move mechanics.",
+      "highlights": [
+        "Led groundbreaking research into Z-Move implementation, resulting in 40% improvement in trainer-Pokemon synchronization",
+        "Became Alola's first Champion while maintaining full teaching schedule",
+        "Mentored diverse team of trainers, achieving 100% graduation rate",
+        "Published widely-cited paper: 'The Power of Friendship: A Quantitative Analysis of Pokemon Performance Enhancement'",
+        "Coordinated cross-regional Pokemon exchange program with Professor Kukui"
+      ]
+    },
+    {
+      "name": "Various Pokemon Leagues",
+      "position": "Professional Trainer & Regional Competitor",
+      "startDate": "2004",
+      "endDate": "2016",
+      "summary": "Traveled across multiple regions competing in leagues while specializing in training challenging Pokemon.",
+      "highlights": [
+        "Competed in 6 regional championships, consistently placing in top percentages despite using untrained Pokemon",
+        "Successfully evolved notorious training-resistant Pokemon including Charizard and Primeape",
+        "Foiled 127 Team Rocket schemes while maintaining regular training schedule",
+        "Discovered and documented 37 previously unknown Pokemon abilities",
+        "Achieved unprecedented 100% success rate in earning gym badges across all regions"
+      ]
+    },
+    {
+      "name": "Oak Pokemon Laboratory",
+      "position": "Junior Research Assistant & Starter Trainer",
+      "startDate": "2004",
+      "endDate": "2004",
+      "summary": "Began Pokemon journey under Professor Oak's guidance, specializing in hands-on Pokemon rehabilitation.",
+      "highlights": [
+        "Successfully rehabilitated and trained initially uncooperative Pikachu, establishing foundation for revolutionary training methods",
+        "Contributed to Professor Oak's research on Pokemon-human relationships",
+        "Developed emergency protocols for handling electric-type Pokemon",
+        "Created comprehensive field guide for new trainers: 'Starting Late: Making the Most of Your Last Starter Pokemon'",
+        "Established long-term research partnership with Oak Laboratory while traveling"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+<script webc:setup>
+  const title = `Resume of ${resume.basics.name}, ${resume.basics.label}`;
+</script>
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://rsms.me/" webc:keep />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" webc:keep />
+    <style @raw="getBundle('css')" webc:keep></style>
+    <script @raw="getBundle('js')" webc:keep></script>
+
+    <title @text="title"></title>
+
+    <!-- Global styles -->
+    <style>
+      :root {
+        --page-width: 60rem;
+        --page-margin: 2rem;
+        --section-spacing: 2.5rem;
+        --grid-left-column: 12rem;
+
+        --text-primary: lch(20 0 0);
+        --text-secondary: lch(35 0 0);
+        --text-muted: lch(55 0 0);
+        --border-color: lch(92 0 0);
+        --background-color: lch(100 0 0);
+        --accent-color: lch(45 35 250);
+        --surface-color: lch(98 0 0);
+
+        --breakpoint-sm: 20rem;
+        --breakpoint-md: 40rem;
+        --breakpoint-lg: 60rem;
+
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        font-feature-settings: "liga" 1, "calt" 1;
+        font-size: 14pt;
+        line-height: 1.5;
+        color: var(--text-primary);
+        background-color: var(--background-color);
+      }
+
+      @supports (font-variation-settings: normal) {
+        :root {
+          font-family: InterVariable, -apple-system, BlinkMacSystemFont,
+            "Segoe UI", Roboto, sans-serif;
+        }
+      }
+
+      :where(*) {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      .resume {
+        container-type: inline-size;
+        container-name: resume;
+        max-width: var(--page-width);
+        margin: var(--page-margin) auto;
+        padding: 0 var(--page-margin);
+      }
+
+      .resume__content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--section-spacing);
+
+        & > section {
+          container-type: inline-size;
+          container-name: section;
+          display: grid;
+          grid-template-columns: var(--grid-left-column) 1fr;
+          gap: 3rem;
+          padding-block: var(--section-spacing);
+          border-bottom: 1px solid var(--border-color);
+
+          & > h2 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            position: relative;
+            padding-bottom: 1rem;
+
+            &::after {
+              content: "";
+              position: absolute;
+              left: 0;
+              bottom: 0;
+              width: 2rem;
+              height: 2px;
+              background: var(--accent-color);
+            }
+          }
+        }
+
+        & > section:last-child {
+          border-bottom: none;
+          padding-bottom: 3rem;
+        }
+      }
+
+      @container resume (max-width: 40rem) {
+        :root {
+          font-size: 12pt;
+          --page-margin: 1rem;
+          --section-spacing: 2rem;
+        }
+
+        .resume__content > section {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+          padding-block: var(--section-spacing);
+
+          & > h2 {
+            text-align: center;
+
+            &::after {
+              left: 50%;
+              transform: translateX(-50%);
+            }
+          }
+        }
+      }
+
+      @media print {
+        @page {
+          margin: 0.5in;
+          size: letter portrait;
+        }
+
+        :root {
+          font-size: 10pt;
+          --page-margin: 0;
+          --section-spacing: 1.5rem;
+          --text-primary: lch(0 0 0);
+          --text-secondary: lch(20 0 0);
+          --text-muted: lch(40 0 0);
+          --border-color: lch(85 0 0);
+        }
+
+        .resume {
+          margin: 0;
+          max-width: none;
+        }
+
+        .resume__content > section > h2::after {
+          background: var(--text-secondary);
+        }
+
+        section {
+          break-inside: avoid;
+        }
+
+        :is(h1, h2, h3) {
+          break-after: avoid;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="resume">
+      <hero></hero>
+
+      <main class="resume__content">
+        <section webc:is="summary"></section>
+        <section webc:is="experience"></section>
+        <section webc:is="skills"></section>
+      </main>
+    </div>
+  </body>
+</html>
