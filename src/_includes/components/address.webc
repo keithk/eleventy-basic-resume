@@ -1,32 +1,64 @@
+<!--
+  Contact Information Component
+  ---------------------------
+  This component displays contact information including social profiles, website, and email.
+  It uses microformats (h-card) classes for better SEO.
+
+  Usage:
+  1. Add social profiles to your resume.json:
+     "basics": {
+       "profiles": [
+         {
+           "network": "LinkedIn",
+           "url": "https://linkedin.com/in/yourprofile"
+         }
+       ],
+       "url": "your.website",
+       "email": "your@email.com"
+     }
+
+  2. The component will automatically display icons for:
+     - Email (📧)
+     - Phone (📞)
+     - LinkedIn (custom icon)
+     - Other websites (🌐)
+-->
+
 <script webc:setup>
   const profiles = resume.basics.profiles;
   const basics = resume.basics;
 </script>
 
-<address>
-  <!-- Social profiles -->
+<address class="p-contact">
+  <!-- Social profiles from resume.json -->
   <a
     webc:for="profile of profiles"
     :href="profile.url"
     @text="profile.network"
+    class="u-url"
+    rel="me"
   ></a>
 
-  <!-- Personal website -->
+  <!-- Personal website (optional) -->
   <a
     webc:if="basics.url"
     :href="'https://' + basics.url"
     @text="basics.url"
+    class="u-url"
+    rel="me"
   ></a>
 
-  <!-- Email -->
+  <!-- Email address (optional) -->
   <a
     webc:if="basics.email"
     :href="'mailto:' + basics.email"
     @text="basics.email"
+    class="u-email"
   ></a>
 </address>
 
 <style webc:scoped>
+  /* Container styles */
   address {
     flex: 1 0 auto;
     align-self: end;
@@ -36,13 +68,19 @@
     line-height: 1.6;
   }
 
+  /* Link styles */
   a {
     display: block;
     white-space: pre;
     color: inherit;
+    text-decoration: none;
   }
 
-  /* Icon decorations */
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Icon base styles */
   a::after {
     margin-inline-start: 0.5rem;
     display: inline-block;
@@ -50,6 +88,7 @@
     right: 0.5pt;
   }
 
+  /* Icon variations */
   a[href^="mailto"]::after {
     content: "📧";
   }
@@ -58,10 +97,9 @@
     content: "📞";
   }
 
-  /* LinkedIn icon */
-  a[href^='https://www.linkedin.com']::after
-  {
-    content: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,-8.11624501e-16 64,0 L8,0 C3.581722,8.11624501e-16 -5.41083001e-16,3.581722 0,8 L0,64 C5.41083001e-16,68.418278 3.581722,72 8,72 Z' fill='%23007EBB'/%3E%3Cpath d='M62,62 L51.315625,62 L51.315625,43.8021149 C51.315625,38.8127542 49.4197917,36.0245323 45.4707031,36.0245323 C41.1746094,36.0245323 38.9300781,38.9261103 38.9300781,43.8021149 L38.9300781,62 L28.6333333,62 L28.6333333,27.3333333 L38.9300781,27.3333333 L38.9300781,32.0029283 C38.9300781,32.0029283 42.0260417,26.2742151 49.3825521,26.2742151 C56.7356771,26.2742151 62,30.7644705 62,40.051212 L62,62 Z M16.349349,22.7940133 C12.8420573,22.7940133 10,19.9296567 10,16.3970067 C10,12.8643566 12.8420573,10 16.349349,10 C19.8566406,10 22.6970052,12.8643566 22.6970052,16.3970067 C22.6970052,19.9296567 19.8566406,22.7940133 16.349349,22.7940133 Z M11.0325521,62 L21.769401,62 L21.769401,27.3333333 L11.0325521,27.3333333 L11.0325521,62 Z' fill='%23FFF'/%3E%3C/g%3E%3C/svg%3E");
+  /* LinkedIn icon using SVG */
+  a[href^='https://www.linkedin.com']::after {
+    content: url("data:image/svg+xml,%3Csvg viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cpath d='M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,-8.11624501e-16 64,0 L8,0 C3.581722,8.11624501e-16 -5.41083001e-16,3.581722 0,8 L0,64 C5.41083001e-16,68.418278 3.581722,72 8,72 Z' fill='%23007EBB'/%3E%3Cpath d='M62,62 L51.315625,62 L51.315625,43.8021149 C51.315625,38.8127542 49.4197917,36.0245323 45.4707031,36.0245323 C41.1746094,36.0245323 38.9300781,38.9261103 38.9300781,43.8021149 L38.9300781,62 L28.6333333,62 L28.6333333,27.3333333 L38.9300781,27.3333333 L38.9300781,32.0029283 C38.9300781,32.0029283 42.0260417,26.2742151 49.3825521,26.2742151 C56.7356771,26.2742151 62,30.7644705 62,40.051212 L62,62 Z M16.349349,22.7940133 C12.8420573,22.7940133 10,19.9296567 10,16.3970067 C10,12.8643566 12.8420573,10 16.349349,10 C19.8566406,10 22.6970052,12.8643566 22.6970052,16.3970067 C22.6970052,19.9296567 19.8566406,22.7940133 16.349349,22.7940133 Z M11.0325521,62 L21.769401,62 L21.769401,27.3333333 L11.0325521,27.3333333 L11.0325521,62 Z' fill='%23FFF'/%3E%3C/g%3E%3C/svg%3E");
     background-size: 1rem 1rem;
     width: 1rem;
     height: 1rem;
@@ -69,8 +107,15 @@
     right: 2pt;
   }
 
-  a:not([href*="mailto"]):not([href*="tel"]):not([href^='https://www.linkedin.com'])::after
-  {
+  /* Default icon for other links */
+  a:not([href*="mailto"]):not([href*="tel"]):not([href^='https://www.linkedin.com'])::after {
     content: "🌐";
+  }
+
+  /* Print styles */
+  @media print {
+    a {
+      text-decoration: none;
+    }
   }
 </style>

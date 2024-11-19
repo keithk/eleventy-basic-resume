@@ -1,22 +1,36 @@
+<!DOCTYPE html>
+<html :lang="lang || 'en-US'">
+<head>
+
 <script webc:setup>
   const title = `Resume of ${resume.basics.name}, ${resume.basics.label}`;
 </script>
 
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Head content -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="preconnect" href="https://rsms.me/" webc:keep />
+<!-- SEO Meta Tags -->
+<meta name="description" content="resume.basics.summary">
+<meta name="author" content="resume.basics.name">
+<meta name="keywords" content="resume.skills.map(skill => skill.name).join(', ')">
+
+<!-- Open Graph / Social Media Meta Tags -->
+<meta property="og:title" content="title">
+<meta property="og:description" content="resume.basics.summary">
+<meta property="og:type" content="profile">
+<meta property="profile:first_name" content="resume.basics.name.split(' ')[0]">
+<meta property="profile:last_name" content="resume.basics.name.split(' ').slice(-1)[0]">
+
+
+<link rel="preconnect" href="https://rsms.me/" webc:keep />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" webc:keep />
     <style @raw="getBundle('css')" webc:keep></style>
     <script @raw="getBundle('js')" webc:keep></script>
 
-    <title @text="title"></title>
+<title @text="title"></title>
 
-    <!-- Global styles -->
-    <style>
+<style>
       :root {
         --page-width: 60rem;
         --page-margin: 2rem;
@@ -163,17 +177,45 @@
         }
       }
     </style>
-  </head>
 
-  <body>
-    <div class="resume">
-      <hero></hero>
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json" webc:keep>JSON.stringify({
+  '@context': 'https://schema.org/',
+  '@type': 'Person',
+  'name': resume.basics.name,
+  'jobTitle': resume.basics.label,
+  'description': resume.basics.summary,
+  'email': resume.basics.email,
+  'url': resume.basics.url,
+  'sameAs': resume.basics.profiles?.map(profile => profile.url) || [],
+  'skills': resume.skills.map(skill => ({
+    '@type': 'DefinedTerm',
+    'termCode': skill.name,
+    'name': skill.name
+  })),
+  'workExperience': resume.work.map(job => ({
+    '@type': 'WorkExperience',
+    'jobTitle': job.position,
+    'description': job.summary,
+    'worksFor': {
+      '@type': 'Organization',
+      'name': job.company
+    },
+    'startDate': job.startDate,
+    'endDate': job.endDate
+  }))
+})</script>
+</head>
+<body>
 
-      <main class="resume__content">
-        <section webc:is="summary"></section>
-        <section webc:is="experience"></section>
-        <section webc:is="skills"></section>
-      </main>
-    </div>
-  </body>
+<!-- Body content -->
+<div class="resume h-resume">
+  <hero class="p-contact h-card"></hero>
+  <main class="resume__content">
+    <summary class="p-summary"></summary>
+    <experience class="p-experience"></experience>
+    <skills class="p-skill"></skills>
+  </main>
+</div>
+</body>
 </html>

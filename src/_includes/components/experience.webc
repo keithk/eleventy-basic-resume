@@ -4,21 +4,22 @@
 
 <h2>Experience</h2>
 <div class="resume-experience__content">
-  <div class="resume-experience__job" webc:for="job of work">
+  <div class="resume-experience__job p-experience h-event" webc:for="job of work">
     <header class="resume-experience__header">
       <div class="resume-experience__role">
-        <h3 class="resume-experience__position" @text="job.position"></h3>
-        <span class="resume-experience__company" @text="job.name"></span>
+        <h3 class="resume-experience__position p-job-title" @text="job.position"></h3>
+        <span class="resume-experience__company p-org" @text="job.name"></span>
       </div>
-      <span
-        class="resume-experience__date"
-        @text="job.period ? job.period : `${job.startDate} – ${job.endDate}`"
-      ></span>
+      <span class="resume-experience__date">
+        <time class="dt-start" :datetime="job.startDate" @text="job.startDate"></time>
+        –
+        <time class="dt-end" :datetime="job.endDate" @text="job.endDate"></time>
+      </span>
     </header>
-    <p class="resume-experience__summary" @text="job.summary"></p>
+    <p class="resume-experience__summary p-summary" @text="job.summary"></p>
     <ul class="resume-experience__highlights">
       <li
-        class="resume-experience__highlight"
+        class="resume-experience__highlight p-description"
         webc:for="highlight of job.highlights"
         @text="highlight"
       ></li>

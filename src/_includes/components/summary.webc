@@ -3,7 +3,7 @@
 </script>
 
 <div class="resume-summary__content">
-  <p @text="summary"></p>
+  <p class="p-summary p-note" @text="summary"></p>
 </div>
 
 <style webc:scoped>

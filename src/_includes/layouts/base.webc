@@ -1,0 +1,4 @@
+<!DOCTYPE html>
+<html :lang="lang || 'en-US'">
+  <template @html="content"></template>
+</html>

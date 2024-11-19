@@ -4,7 +4,7 @@
 
 <h2>Skills</h2>
 <ul class="resume-skills__list">
-  <li class="resume-skills__item" webc:for="skill of skills" @text="skill"></li>
+  <li class="resume-skills__item p-skill" webc:for="skill of skills" @text="skill"></li>
 </ul>
 
 <style webc:scoped>

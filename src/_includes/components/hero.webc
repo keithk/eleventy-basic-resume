@@ -4,11 +4,11 @@
 
 <header class="resume-header">
   <h1 class="resume-title">
-    <span class="name" @text="basics.name"></span>
+    <span class="name p-name" @text="basics.name"></span>
     <br />
-    <span class="role" @text="basics.label"></span>
+    <span class="role p-job-title" @text="basics.label"></span>
   </h1>
-  <address webc:is="address"></address>
+  <address webc:is="address" class="p-contact"></address>
 </header>
 
 <style webc:scoped>
